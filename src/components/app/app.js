@@ -2,22 +2,26 @@ import React, { Component } from 'react';
 import {Col, Row, Container, Button} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import ItemList from '../itemList';
-import CharDetails from '../charDetails';
+import CharacterPage from '../characterPage/';
 import './app.css'
 import ToogleRandomButton from '../button';
-
-
+import ErrorMessage from '../errorMessage'
 
 export default class App extends Component {
 constructor(props){
     super(props);
     this.state ={
-        showRandomChar:true
+        showRandomChar:true,
+        error: false
     }
     this.onRandomChar =this.onRandomChar.bind(this);
 }
-
+componentDidCatch(){
+    console.log('error');
+    this.setState({
+        error:true
+    })
+}
 onRandomChar (){
     this.setState({
         showRandomChar:!this.state.showRandomChar
@@ -27,6 +31,9 @@ onRandomChar (){
     render(){
         const showRandomChar=this.state.showRandomChar;
         
+        if(this.state.error){
+            return <ErrorMessage/>
+        }
         return (
             <> 
                 <Container>
@@ -41,14 +48,7 @@ onRandomChar (){
                     </Row>:null
                     }
                     <ToogleRandomButton onRandomChar={this.onRandomChar}/>
-                    <Row>
-                        <Col md='6'>
-                            <ItemList />
-                        </Col>
-                        <Col md='6'>
-                            <CharDetails />
-                        </Col>
-                    </Row>
+                    <CharacterPage/>
                 </Container>
             </>
         );
