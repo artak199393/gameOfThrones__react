@@ -5,7 +5,10 @@ import RandomChar from '../randomChar';
 import CharacterPage from '../characterPage/';
 import './app.css'
 import ToogleRandomButton from '../button';
-import ErrorMessage from '../errorMessage'
+import ErrorMessage from '../errorMessage';
+import ItemList from '../itemList';
+import ItemDetails from '../itemDetails';
+import gotService from '../../services/gotService';
 
 export default class App extends Component {
 constructor(props){
@@ -16,6 +19,7 @@ constructor(props){
     }
     this.onRandomChar =this.onRandomChar.bind(this);
 }
+gotService = new gotService();
 componentDidCatch(){
     console.log('error');
     this.setState({
@@ -49,6 +53,28 @@ onRandomChar (){
                     }
                     <ToogleRandomButton onRandomChar={this.onRandomChar}/>
                     <CharacterPage/>
+                    {/* <Row>
+                        <Col md='6'>
+                            <ItemList  
+                                onItenSelected={this.onItemSelected}
+                                getData={this.gotService.getAllBooks}
+                                renderItem = {(item) => item.name}/>
+                        </Col>
+                        <Col md='6'>
+                            <ItemDetails  charId={this.state.selectedItem}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md='6'>
+                            <ItemList  
+                                onItemSelected={this.onItemSelected}
+                                getData={this.gotService.getAllHouses}
+                                renderItem = {(item) => item.name}/>
+                        </Col>
+                        <Col md='6'>
+                            <ItemDetails  itemId={this.state.selectedChar}/>
+                        </Col>
+                    </Row> */}
                 </Container>
             </>
         );
