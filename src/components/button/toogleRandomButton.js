@@ -1,14 +1,15 @@
 import React from 'react';
-import {Row, Col, Button} from 'reactstrap'
+import {Row, Col} from 'reactstrap';
+import './button.css';
 
 const ToogleRandomButton = ({onRandomChar}) => {
     return(
             <Row>
                 <Col >
-                    <Button 
+                    <button className='toggle-btn'
                         type="button" 
                         onClick = {onRandomChar} 
-                        color="primary">Toogle random character</Button>
+                        color="primary">Toogle random character</button>
                 </Col>
             </Row>
     )

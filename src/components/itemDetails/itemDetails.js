@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import gotService from '../../services/gotService';
 import Spinner from '../spinner';
-import './charDetails.css';
+import './itemDetails.css';
 
 const Field = ({item, field, label}) =>{
     return (
@@ -24,8 +24,8 @@ export default class ItemDetails extends Component {
     componentDidMount(){
         this.updateItem();
     }
-    componentDidUpdate(prewProps){
-        if(this.props.itemId !== prewProps.itemId){
+    componentDidUpdate(prevProps){
+        if(this.props.itemId !== prevProps.itemId){
             this.updateItem();
         }
     }
@@ -36,16 +36,14 @@ export default class ItemDetails extends Component {
         })
     }
     updateItem(){                                      
-        const {itemId} = this.props;
+        const {itemId, getData} = this.props;
         if(!itemId){
-            return
+            return;
         }
-        this.setState({
-            loading: false
-        })
-        this.gotService.getCharacter(itemId) 
-            .then(this.onItemDetailsLoaded)
-            // this.foo.bar=0;
+        getData(itemId)
+            .then((item) => {
+                this.setState({item})
+            })
     }
    
     render() {
@@ -55,11 +53,6 @@ export default class ItemDetails extends Component {
         const {item} = this.state;
         const {name} = item;
 
-        if(this.state.loading){
-            return <div className="char-details rounded">
-                <Spinner/>
-            </div>
-        }
         return (
             <div className="char-details rounded">
                 <h4>{name}</h4>
