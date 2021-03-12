@@ -6,9 +6,9 @@ import {CharacterPage, BooksPage, HousesPage} from '../pages';
 import './app.css'
 import ToogleRandomButton from '../button';
 import ErrorMessage from '../errorMessage';
-import gotService from '../../services/gotService';
+import gotService from '../../../services/gotService';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import BooksItem from '../pages/booksItem';
+import BooksItem from '../pages/booksItem__old';
 
 
 export default class App extends Component {
@@ -23,6 +23,7 @@ constructor(props){
 }
 gotService = new gotService();
 componentDidCatch(){
+    console.log('error');
     this.setState({
         error:true
     })
@@ -49,7 +50,7 @@ onRandomChar (){
                     {
                         showRandomChar? <Row>
                         <Col lg={{size: 5, offset: 0}}>
-                            <RandomChar getCharacter={this.gotService.getCharacter}/>
+                            <RandomChar />
                         </Col>
                     </Row>:null
                     }

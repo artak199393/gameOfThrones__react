@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ItemList from '../itemList';
 import ItemDetails, {Field} from '../itemDetails';
 import ErrorMessage from '../errorMessage';
-import gotService from '../../services/gotService';
+import gotService from '../../../services/gotService';
 import RowBlock from '../rowBlock';
 
 
@@ -19,6 +19,7 @@ export default class CharacterPage extends Component{
         })
     }
     componentDidCatch(){
+        console.log('error');
         this.setState({
             error:true
         })

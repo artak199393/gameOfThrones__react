@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import {Col, Row, Container, Button} from 'reactstrap';
 import ItemList from '../itemList';
 import ErrorMessage from '../errorMessage';
-import gotService from '../../services/gotService';
+import gotService from '../../../services/gotService';
 import {withRouter} from 'react-router-dom';
 
 

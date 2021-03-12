@@ -1,37 +1,44 @@
-import React, {useEffect, useState} from 'react';
+import React, {Component} from 'react';
 import './randomChar.css';
+import gotService from '../../../services/gotService';
 import Spinner from '../spinner';
 import ErrorMessage from '../errorMessage';
 
-function RandomChar ({getCharacter}) {
-    
-    const [char, setChar] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
-    
-    useEffect(()=> {
-        upDateChar();
-        let timerId = setInterval(upDateChar, 1500);
-        return ()=>{
-            clearInterval(timerId);
-        }
-    },[])
-    function onCharLoaded (char){
-        setChar (char);
-        setLoading(false);
-        }
-    
-    function onError (err){
-        setError(true);
-        setLoading(false);
+export default class RandomChar extends Component {
+    gotService = new gotService();
+    state = {
+        char: {},
+        loading:true,
+        error: false
     }
-    function upDateChar (){
+    componentDidMount() {
+        this.upDateChar();
+        this.timerId = setInterval(this.upDateChar, 1500);
+    }
+    componentWillUnmount(){
+        clearInterval(this.timerId);
+    }
+
+    onCharLoaded = (char) =>{
+        this.setState({
+            char,
+            loading:false
+        })
+    }
+    onError = (err) =>{
+        this.setState({
+            error:true,
+            loading:false
+        })
+    }
+    upDateChar = () => {
         const id = Math.floor(Math.random()*140+25);
-        getCharacter(id)
-            .then(onCharLoaded)
-            .catch(onError);
+        this.gotService.getCharacter(id)
+            .then(this.onCharLoaded)
+            .catch(this.onError);
     }
-    
+    render() {
+        const {char, loading, error} = this.state;
         const spinner = loading ? <Spinner/>: null;
         const content = !(loading || error )? <View char={char}/>:null;
         const errorMessage = error ? <ErrorMessage/>: null;
@@ -44,8 +51,8 @@ function RandomChar ({getCharacter}) {
         );
 
         
-    
-}export default RandomChar;
+    }
+}
 const View = ({char}) =>{
     const {name, gender, born, died, culture} = char;
     return(
