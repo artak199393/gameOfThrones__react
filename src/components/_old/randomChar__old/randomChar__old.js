@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './randomChar.css';
 import gotService from '../../../services/gotService';
-import Spinner from '../spinner';
-import ErrorMessage from '../errorMessage';
+import Spinner from '../spinner__old';
+import ErrorMessage from '../errorMessage__old';
 
 export default class RandomChar extends Component {
     gotService = new gotService();

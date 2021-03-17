@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './itemList.css';
-import Spinner from '../spinner';
+import Spinner from '../spinner__old';
 
 export default class ItemList extends Component {
 

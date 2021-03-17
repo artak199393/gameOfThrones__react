@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import {Col, Row, Container, Button} from 'reactstrap';
-import Header from '../header';
-import RandomChar from '../randomChar';
-import {CharacterPage, BooksPage, HousesPage} from '../pages';
+import Header from '../header__old';
+import RandomChar from '../randomChar__old';
+import {CharacterPage, BooksPage, HousesPage, BooksItem} from '../pages__old';
 import './app.css'
-import ToogleRandomButton from '../button';
-import ErrorMessage from '../errorMessage';
+import ToogleRandomButton from '../button__old';
+import ErrorMessage from '../errorMessage__old';
 import gotService from '../../../services/gotService';
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import BooksItem from '../pages/booksItem__old';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
 export default class App extends Component {
@@ -55,7 +54,7 @@ onRandomChar (){
                     </Row>:null
                     }
                     <ToogleRandomButton onRandomChar={this.onRandomChar}/>
-                    <Route path='/' exact component={() => <h1>Welcom to GOT DB</h1>}/>
+                    <Route path='/' exact component={() => <h1 className='got-title'>Welcom to GOT DB</h1>}/>
                     <Route path='/characters' component={CharacterPage}/>
                     <Route path='/houses' component={HousesPage}/>
                     <Route path='/books' exact component={BooksPage}/>

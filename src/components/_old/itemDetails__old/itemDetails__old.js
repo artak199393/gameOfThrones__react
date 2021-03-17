@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import gotService from '../../../services/gotService';
-import Spinner from '../spinner';
+import Spinner from '../spinner__old';
 import './itemDetails.css';
 
 const Field = ({item, field, label}) =>{

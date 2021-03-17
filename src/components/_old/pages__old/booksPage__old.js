@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import {Col, Row, Container, Button} from 'reactstrap';
-import ItemList from '../itemList';
-import ErrorMessage from '../errorMessage';
+import ItemList from '../itemList__old';
+import ErrorMessage from '../errorMessage__old';
 import gotService from '../../../services/gotService';
 import {withRouter} from 'react-router-dom';
 
